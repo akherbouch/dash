@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1017252578004",
+    "firebase_url": "https://dash-a5c99-default-rtdb.firebaseio.com",
+    "project_id": "dash-a5c99",
+    "storage_bucket": "dash-a5c99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017252578004:android:b231df13923ca6ac177141",
+        "android_client_info": {
+          "package_name": "com.github.muneebwanee.dash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017252578004-7ln1dlri445t2bmm6lj0s5mgvru9i0jb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-NDhYRNd5Wr4jFN9IfwojLg_SN9MU820"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017252578004-7ln1dlri445t2bmm6lj0s5mgvru9i0jb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
